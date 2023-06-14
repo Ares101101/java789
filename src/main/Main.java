@@ -4,6 +4,7 @@ package main;
 import function.Function;
 import function.FunctionImplement;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Vector;
@@ -72,9 +73,36 @@ public class Main {
 
       listLinkedList.add(arrayList);
       for (int i = 0; i < listLinkedList.size(); i++) {
-         System.out.println(listLinkedList.getFirst());
+         System.out.println(listLinkedList.get(i));
       }
 
+      ArrayList<Integer> numerosInt = new ArrayList();
+
+      for (int i = 0; i < 11; i++) {
+         if( i == 0 ||i % 2 == 0){
+            numerosInt.add(i);
+         }
+      }
+      for (int i = 0; i < numerosInt.size(); i++) {
+         System.out.println(numerosInt.get(i));
+      }
+
+      try {
+         functions.DividePorCero(7);
+      }catch (Exception e){
+         System.out.println("Esto no puede hacerse");
+      }
+
+
+      try {
+         InputStream descargas = new FileInputStream("C:\\Users");
+         OutputStream copia = new FileOutputStream("C:/Users/CONTABILIDAD/Downloads/copia.txt");
+
+         functions.copyFile(descargas,copia);
+
+      }catch (FileNotFoundException e){
+         System.out.println("no existe ese directorio" + e.getMessage());
+      };
 
 
    }

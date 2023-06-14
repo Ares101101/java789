@@ -1,5 +1,7 @@
 package function;
 
+import javax.imageio.IIOException;
+import java.io.*;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Vector;
@@ -21,5 +23,49 @@ public  class FunctionImplement implements Function {
         return texto;
     }
 
+    @Override
+    public int DividePorCero(int arg) throws ArithmeticException {
+        int resultado = 0;
+        try {
+            resultado = arg/0;
+        } catch (ArithmeticException e){
+           throw new ArithmeticException();
+        }
+        return resultado;
+    }
+
+    @Override
+    public void copyFile(InputStream fileIn, OutputStream fileOut) {
+            try {
+                byte[] datos = fileIn.readAllBytes();
+                fileOut.write(datos);
+            }catch (IOException e){
+                System.out.println("Archivo a copiar no existe" + e.getMessage());
+            }
+    }
+
+    @Override
+    public InputStream newImputStream(String archivo) {
+
+        try {
+            InputStream nuewInput = new FileInputStream(archivo);
+
+            try {
+                byte[] datos = nuewInput.readAllBytes();
+                for (byte dato :datos){
+                    System.out.println((char)dato);
+                    return nuewInput;
+                }
+            }
+            catch (IOException e ){
+                System.out.println("no puedo leer este fichero" + e.getMessage());
+            }
+
+        }catch (FileNotFoundException e ){
+            System.out.println("da error" + e.getMessage());
+
+        }
+        return null;
+    }
 }
 
