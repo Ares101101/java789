@@ -92,17 +92,22 @@ public class Main {
       }catch (Exception e){
          System.out.println("Esto no puede hacerse");
       }
-
-
       try {
-         InputStream descargas = new FileInputStream("C:\\Users");
-         OutputStream copia = new FileOutputStream("C:/Users/CONTABILIDAD/Downloads/copia.txt");
+         InputStream file = new FileInputStream("C:/Users/CONTABILIDAD/Downloads/LE100886540352023070014040001EXP2.txt");
+         try {
+            byte[] datos = file.readAllBytes();
+            PrintStream info = new PrintStream("1.xlsx");
+            for (byte dato : datos) {
+               System.out.print((char)dato);
 
-         functions.copyFile(descargas,copia);
+            }
+         } catch (IOException e ){
+            System.out.println("ERROR " + e.getMessage());
+         }
+      } catch (FileNotFoundException e ){
+         System.out.println("da error: " + e.getLocalizedMessage());
+      }
 
-      }catch (FileNotFoundException e){
-         System.out.println("no existe ese directorio" + e.getMessage());
-      };
 
 
    }
